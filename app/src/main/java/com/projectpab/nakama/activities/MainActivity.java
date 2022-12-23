@@ -35,5 +35,14 @@ public class MainActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+        binding.haki.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, HakiActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
     }
 }

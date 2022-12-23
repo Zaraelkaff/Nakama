@@ -90,4 +90,27 @@ public interface APIService {
     Call<ValueNoData> deleteMovie(@Field("key") String key,
                                   @Field("movie_id") int movie_id);
 
+    //==================================HAKI=============================================
+    @POST("getAllHaki")
+    @FormUrlEncoded
+    Call<ValueData<Haki>> getAllHaki(@Field("key") String key);
+
+
+    @POST("insertHaki")
+    @FormUrlEncoded
+    Call<ValueNoData> insertHaki(@Field("key") String key,
+                                 @Field("haki_name") String haki_name,
+                                 @Field("haki_describe") String haki_describe);
+    @POST("updateHaki")
+    @FormUrlEncoded
+    Call<ValueNoData> updateHaki(@Field("key") String key,
+                                 @Field("haki_id") int haki_id,
+                                 @Field("haki_name") String haki_name,
+                                 @Field("haki_describe") String haki_describe);
+
+    @POST("deleteHaki")
+    @FormUrlEncoded
+    Call<ValueNoData> deleteHaki(@Field("key") String key,
+                                 @Field("haki_id") int haki_id);
+
 }
