@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    tools:context=".activities.UpdatePiratesActivity">
+
+    <LinearLayout
+        android:id="@+id/ll_update_pirates"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_pirates_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:counterEnabled="true"
+            app:counterMaxLength="50">
+
+            <EditText
+                android:id="@+id/et_pirates_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Pirates Name"
+                android:inputType="none"
+                android:maxLength="50"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_pirates_photo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:counterEnabled="true"
+            app:counterMaxLength="255">
+
+            <EditText
+                android:id="@+id/et_pirates_photo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Link Pirates Photo"
+                android:inputType="none"
+                android:maxLength="255"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_update_pirates"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Update Pirates"
+        android:background="@color/purple_500"
+        android:textColor="@color/white"
+        android:layout_below="@id/ll_update_pirates"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="16dp"/>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btn_update_pirates"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="8dp"
+        android:visibility="gone"/>
+
+</RelativeLayout>
