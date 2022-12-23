@@ -35,4 +35,35 @@ public interface APIService {
     Call<ValueNoData> deletePirates(@Field("key") String key,
                                     @Field("pirates_id") int pirates_id);
 
+    //==================================CREW=============================================
+    @POST("getAllCrew")
+    @FormUrlEncoded
+    Call<ValueData<Crew>> getAllCrew(@Field("key") String key);
+
+    @POST("getCrewByPirates")
+    @FormUrlEncoded
+    Call<ValueData<Crew>> getCrewByPirates(@Field("key") String key,
+                                           @Field("pirates_id") int pirates_id);
+
+    @POST("insertCrew")
+    @FormUrlEncoded
+    Call<ValueNoData> insertCrew(@Field("key") String key,
+                                 @Field("pirates_id") int pirates_id,
+                                 @Field("crew_name") String crew_name,
+                                 @Field("crew_photo") String crew_photo,
+                                 @Field("crew_bounty") String crew_bounty);
+    @POST("updateCrew")
+    @FormUrlEncoded
+    Call<ValueNoData> updateCrew(@Field("key") String key,
+                                 @Field("crew_id") int crew_id,
+                                 @Field("pirates_id") int pirates_id,
+                                 @Field("crew_name") String crew_name,
+                                 @Field("crew_photo") String crew_photo,
+                                 @Field("crew_bounty") String crew_bounty);
+
+    @POST("deleteCrew")
+    @FormUrlEncoded
+    Call<ValueNoData> deleteCrew(@Field("key") String key,
+                                 @Field("crew_id") int crew_id);
+
 }

@@ -22,7 +22,6 @@ public class DetailPiratesActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         pirates = getIntent().getParcelableExtra("EXTRA_DATA");
-        int piratesId = pirates.getPirates_id();
         String piratesName = pirates.getPirates_name();
         String piratesPhoto = pirates.getPirates_photo();
 
@@ -33,7 +32,9 @@ public class DetailPiratesActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Toast.makeText(DetailPiratesActivity.this, "id pirates :" + pirates.getPirates_id(), Toast.LENGTH_SHORT).show();
-
+                Intent intent = new Intent(DetailPiratesActivity.this, CrewActivity.class);
+                intent.putExtra("EXTRA_DATA", pirates);
+                startActivity(intent);
             }
         });
 
