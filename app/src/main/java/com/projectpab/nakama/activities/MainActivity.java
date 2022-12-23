@@ -26,5 +26,14 @@ public class MainActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+        binding.movie.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, MovieActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
     }
 }

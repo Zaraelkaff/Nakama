@@ -66,4 +66,28 @@ public interface APIService {
     Call<ValueNoData> deleteCrew(@Field("key") String key,
                                  @Field("crew_id") int crew_id);
 
+    //==================================MOVIE=============================================
+    @POST("getAllMovie")
+    @FormUrlEncoded
+    Call<ValueData<Movie>> getAllMovie(@Field("key") String key);
+
+    @POST("insertMovie")
+    @FormUrlEncoded
+    Call<ValueNoData> insertMovie(@Field("key") String key,
+                                  @Field("movie_name") String movie_name,
+                                  @Field("movie_year") String movie_year,
+                                  @Field("movie_photo") String movie_photo);
+    @POST("updateMovie")
+    @FormUrlEncoded
+    Call<ValueNoData> updateMovie(@Field("key") String key,
+                                  @Field("movie_id") int movie_id,
+                                  @Field("movie_name") String movie_name,
+                                  @Field("movie_year") String movie_year,
+                                  @Field("movie_photo") String movie_photo);
+
+    @POST("deleteMovie")
+    @FormUrlEncoded
+    Call<ValueNoData> deleteMovie(@Field("key") String key,
+                                  @Field("movie_id") int movie_id);
+
 }
