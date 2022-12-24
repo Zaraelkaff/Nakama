@@ -4,43 +4,84 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#DDE7FF"
+    android:padding="10dp"
     tools:context=".activities.MainActivity">
+
+
+    <LinearLayout
+        android:id="@+id/ll_slide"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <com.denzcoskun.imageslider.ImageSlider
+            android:id="@+id/image_slider"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            app:iss_auto_cycle="true"
+            app:iss_corner_radius="10"
+            app:iss_delay="0"
+            app:iss_error_image="@drawable/ic_broken_image_24"
+            app:iss_period="1000"
+            app:iss_placeholder="@drawable/ic_broken_image_24" />
+
+    </LinearLayout>
 
     <TextView
         android:id="@+id/judul"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="MENU!!!"
-        android:textSize="30sp"
-        android:layout_marginTop="35dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
-
-    <Button
-        android:id="@+id/pirates"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:text="MENU:"
+        android:textSize="28sp"
+        android:textColor="@color/black"
+        android:letterSpacing="0.5"
+        android:textStyle="bold"
+        android:layout_marginBottom="70dp"
+        android:paddingBottom="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:text="PIRATES"/>
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/pirates"
+        android:layout_width="300dp"
+        android:layout_height="100dp"
+        android:backgroundTint="#FEE979"
+        android:text="PIRATES"
+        android:textColor="@color/black"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/judul" />
 
     <Button
         android:id="@+id/movie"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/pirates"
-        app:layout_constraintStart_toStartOf="@+id/pirates"
-        android:text="MOVIE"/>
+        android:layout_width="300dp"
+        android:layout_height="100dp"
+        android:backgroundTint="#DC4F3C"
+        android:text="MOVIE"
+        android:textColor="@color/black"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pirates" />
 
     <Button
         android:id="@+id/haki"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/movie"
-        app:layout_constraintStart_toStartOf="@+id/movie"
-        android:text="HAKI"/>
+        android:layout_width="300dp"
+        android:layout_height="100dp"
+        android:backgroundTint="#46A1E6"
+        android:text="HAKI"
+        android:textColor="@color/black"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/movie" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
