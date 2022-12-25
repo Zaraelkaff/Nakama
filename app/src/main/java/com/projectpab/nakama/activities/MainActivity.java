@@ -3,8 +3,10 @@ package com.projectpab.nakama.activities;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import com.denzcoskun.imageslider.ImageSlider;
 import com.denzcoskun.imageslider.constants.ScaleTypes;
@@ -16,6 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
+    MediaPlayer audio;
     private ActivityMainBinding binding;
 
     private List<SlideModel> imageList = new ArrayList<>();
@@ -33,6 +36,24 @@ public class MainActivity extends AppCompatActivity {
 
         imageSlider = findViewById(R.id.image_slider);
         imageSlider.setImageList(imageList, ScaleTypes.CENTER_CROP);
+
+        audio = MediaPlayer.create(this, R.raw.sound);
+        audio.setLooping(true);
+        audio.setVolume(1,1);
+        audio.start();
+
+        binding.sound.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (audio.isPlaying()){
+                    audio.pause();
+                    binding.sound.setImageResource(R.drawable.ic_volume_off_24);
+                }else{
+                    audio.start();
+                    binding.sound.setImageResource(R.drawable.ic_volume_up_24);
+                }
+            }
+        });
 
         binding.pirates.setOnClickListener(new View.OnClickListener() {
             @Override

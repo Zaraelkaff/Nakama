@@ -11,8 +11,9 @@
     <LinearLayout
         android:id="@+id/ll_slide"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintTop_toTopOf="parent">
 
         <com.denzcoskun.imageslider.ImageSlider
             android:id="@+id/image_slider"
@@ -27,6 +28,16 @@
 
     </LinearLayout>
 
+    <ImageButton
+        android:id="@+id/sound"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_margin="20dp"
+        android:src="@drawable/ic_volume_up_24"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        app:layout_constraintTop_toBottomOf="@+id/ll_slide"
+        app:layout_constraintStart_toStartOf="parent"/>
+
     <Button
         android:id="@+id/pirates"
         android:layout_width="300dp"
@@ -37,10 +48,9 @@
         android:textSize="25sp"
         android:textStyle="bold"
         android:layout_marginBottom="70dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sound"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent"/>
 
     <Button
         android:id="@+id/movie"
