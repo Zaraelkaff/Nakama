@@ -8,7 +8,6 @@
     android:padding="10dp"
     tools:context=".activities.MainActivity">
 
-
     <LinearLayout
         android:id="@+id/ll_slide"
         android:layout_width="match_parent"
@@ -28,22 +27,6 @@
 
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/judul"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="MENU:"
-        android:textSize="28sp"
-        android:textColor="@color/black"
-        android:letterSpacing="0.5"
-        android:textStyle="bold"
-        android:layout_marginBottom="70dp"
-        android:paddingBottom="10dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <Button
         android:id="@+id/pirates"
         android:layout_width="300dp"
@@ -53,9 +36,11 @@
         android:textColor="@color/black"
         android:textSize="25sp"
         android:textStyle="bold"
+        android:layout_marginBottom="70dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/judul" />
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <Button
         android:id="@+id/movie"
