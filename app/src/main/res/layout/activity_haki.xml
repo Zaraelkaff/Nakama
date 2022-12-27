@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#EFC88F"
+    android:background="#7694FF"
     tools:context=".activities.HakiActivity">
 
     <TextView
@@ -15,7 +15,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:text="DAFTAR HAKI"
-        android:textSize="20sp"
+        android:textColor="@color/white"
+        android:textSize="35sp"
         android:textStyle="bold"
         android:layout_marginTop="20dp"/>
 
@@ -47,7 +48,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_margin="16dp"
-        app:backgroundTint="#EEC78E"
+        app:backgroundTint="#6B71DD"
         app:tint="@color/white"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
