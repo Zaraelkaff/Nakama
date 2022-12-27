@@ -42,6 +42,7 @@ public class CrewViewAdapter extends RecyclerView.Adapter<CrewViewAdapter.ViewHo
         Crew crew = data.get(pos);
         holder.tvCrewName.setText(crew.getCrew_name());
         holder.tvCrewDate.setText(crew.getCreated_date());
+        holder.tvCrewBounty.setText(crew.getCrew_bounty());
 
         holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
@@ -65,12 +66,14 @@ public class CrewViewAdapter extends RecyclerView.Adapter<CrewViewAdapter.ViewHo
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        private TextView tvCrewName, tvCrewDate;
+        private TextView tvCrewName, tvCrewDate, tvCrewBounty;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
             tvCrewName = itemView.findViewById(R.id.tv_crew_name);
             tvCrewDate = itemView.findViewById(R.id.tv_crew_date);
+            tvCrewBounty = itemView.findViewById(R.id.tv_crew_bounty);
+
         }
     }
 }

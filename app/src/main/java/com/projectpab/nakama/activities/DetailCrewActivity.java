@@ -23,6 +23,6 @@ public class DetailCrewActivity extends AppCompatActivity {
 
         binding.tvCrewName.setText(crew.getCrew_name());
         binding.tvCrewBounty.setText(crew.getCrew_bounty());
-        binding.tvCrewPhoto.setText(crew.getCrew_photo());
+        //binding.tvCrewPhoto.setText(crew.getCrew_photo());
     }
 }

@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.projectpab.nakama.databinding.ActivityDetailPiratesBinding;
 import com.projectpab.nakama.databinding.ActivityPiratesBinding;
 import com.projectpab.nakama.models.Pirates;
@@ -26,7 +27,8 @@ public class DetailPiratesActivity extends AppCompatActivity {
         String piratesPhoto = pirates.getPirates_photo();
 
         binding.tvPiratesName.setText(piratesName);
-        binding.tvPiratesPhoto.setText(piratesPhoto);
+        //binding.tvPiratesPhoto.setText(piratesPhoto);
+
 
         binding.btnCrew.setOnClickListener(new View.OnClickListener() {
             @Override

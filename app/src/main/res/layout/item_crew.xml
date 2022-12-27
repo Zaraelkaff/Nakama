@@ -5,12 +5,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    app:cardBackgroundColor="@color/white"
-    app:cardCornerRadius="6dp"
+    app:cardBackgroundColor="#FEE979"
+    app:cardCornerRadius="5dp"
     app:cardElevation="0.7dp"
     app:cardPreventCornerOverlap="true"
-    android:layout_marginHorizontal="12dp"
-    android:layout_marginTop="12dp">
+    android:layout_margin="15dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -21,41 +20,63 @@
             android:id="@+id/tv_crew_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="sans-serif-condensed"
+            android:fontFamily="sans-serif"
             android:textSize="24sp"
             android:textStyle="bold"
+            android:textColor="@color/black"
             android:paddingHorizontal="8dp"
-            android:paddingTop="8dp"
+            android:paddingTop="10dp"
             tools:text="Luffy"/>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingHorizontal="8dp"
-            android:paddingTop="2dp"
-            android:paddingBottom="4dp">
+            android:paddingTop="10dp"
+            android:paddingBottom="5dp">
+
+            <TextView
+                android:id="@+id/judul"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                app:layout_constraintTop_toTopOf="parent"
+                android:text="Bounty"/>
+
+
+            <TextView
+                android:id="@+id/tv_crew_bounty"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@+id/judul"
+                android:text="3.000.000.000"/>
+
 
             <ImageView
                 android:id="@+id/iv_crew_date"
                 android:layout_width="0dp"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
                 android:src="@drawable/ic_baseline_access_time_filled_24"
-                app:layout_constraintDimensionRatio="H, 1:1"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintDimensionRatio="H, 1:0.7"
                 app:layout_constraintStart_toStartOf="parent"
-                app:tint="#FFDAA3"/>
+                app:layout_constraintTop_toBottomOf="@id/tv_crew_bounty"
+                app:tint="#BAA585" />
 
             <TextView
                 android:id="@+id/tv_crew_date"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="sans-serif-condensed"
-                android:paddingHorizontal="4dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/iv_crew_date"
-                app:layout_constraintTop_toTopOf="@id/iv_crew_date"
-                app:layout_constraintBottom_toBottomOf="@id/iv_crew_date"
+                android:fontFamily="sans-serif"
+                android:textSize="8sp"
                 android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@id/tv_crew_bounty"
+                app:layout_constraintBottom_toBottomOf="@id/iv_crew_date"
+                app:layout_constraintStart_toEndOf="@+id/iv_crew_date"
                 tools:text="2022-11-20 13:59:02" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
