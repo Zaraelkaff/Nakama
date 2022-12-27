@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp"
-    tools:context=".activities.AddHakiActivity">
+    tools:context=".activities.AddHakiActivity"
+    android:background="#46A1E6">
 
     <LinearLayout
         android:id="@+id/ll_add_haki"
@@ -13,6 +14,14 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:padding="16dp">
+
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_back_white_24"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/til_haki_name"
@@ -27,7 +36,9 @@
                 android:layout_height="wrap_content"
                 android:hint="Haki Name"
                 android:inputType="none"
-                android:maxLength="50"/>
+                android:maxLength="50"
+                android:layout_marginTop="20dp"
+                android:background="@color/white"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -44,7 +55,8 @@
                 android:layout_height="wrap_content"
                 android:hint="describe"
                 android:inputType="none"
-                android:maxLength="255"/>
+                android:maxLength="255"
+                android:background="@color/white"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -56,10 +68,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Add Haki"
-        android:background="@color/purple_500"
+        android:backgroundTint="#DC4F3C"
         android:textColor="@color/white"
         android:layout_below="@id/ll_add_haki"
-        android:layout_alignParentEnd="true"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="16dp"/>
 
     <ProgressBar

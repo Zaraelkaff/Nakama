@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp"
-    tools:context=".activities.AddPiratesActivity">
+    tools:context=".activities.AddPiratesActivity"
+    android:background="#FFAC5F">
 
     <LinearLayout
         android:id="@+id/ll_add_pirates"
@@ -13,6 +14,27 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:padding="16dp">
+
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_back_white_24"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_pirates_pic"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/iv_pirates_pic"
+                android:layout_width="match_parent"
+                android:layout_height="266dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_baseline_add_box_24"
+                android:layout_marginTop="20dp"/>
+        </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/til_pirates_name"
@@ -27,7 +49,9 @@
                 android:layout_height="wrap_content"
                 android:hint="Pirates Name"
                 android:inputType="none"
-                android:maxLength="50"/>
+                android:maxLength="50"
+                android:layout_marginTop="20dp"
+                android:background="@color/white"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -44,7 +68,8 @@
                 android:layout_height="wrap_content"
                 android:hint="Link Pirates Photo"
                 android:inputType="none"
-                android:maxLength="255"/>
+                android:maxLength="255"
+                android:background="@color/white"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -56,10 +81,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Add Pirates"
-        android:background="@color/purple_500"
+        android:backgroundTint="#46A1E6"
         android:textColor="@color/white"
         android:layout_below="@id/ll_add_pirates"
-        android:layout_alignParentEnd="true"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="16dp"/>
 
     <ProgressBar
