@@ -17,6 +17,7 @@
         tools:targetApi="31">
         <activity
             android:name=".activities.DetailHakiActivity"
+            android:theme="@style/Theme.Nakama.NoActionBarAndStatusBar"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -24,6 +25,7 @@
         </activity>
         <activity
             android:name=".activities.UpdateHakiActivity"
+            android:theme="@style/Theme.Nakama.NoActionBarAndStatusBar"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -31,6 +33,7 @@
         </activity>
         <activity
             android:name=".activities.AddHakiActivity"
+            android:theme="@style/Theme.Nakama.NoActionBarAndStatusBar"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -38,6 +41,7 @@
         </activity>
         <activity
             android:name=".activities.HakiActivity"
+            android:theme="@style/Theme.Nakama.NoActionBarAndStatusBar"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -45,6 +49,7 @@
         </activity>
         <activity
             android:name=".activities.UpdateMovieActivity"
+            android:theme="@style/Theme.Nakama.NoActionBarAndStatusBar"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -52,6 +57,7 @@
         </activity>
         <activity
             android:name=".activities.DetailMovieActivity"
+            android:theme="@style/Theme.Nakama.NoActionBarAndStatusBar"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -59,6 +65,7 @@
         </activity>
         <activity
             android:name=".activities.AddMovieActivity"
+            android:theme="@style/Theme.Nakama.NoActionBarAndStatusBar"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -66,6 +73,7 @@
         </activity>
         <activity
             android:name=".activities.MovieActivity"
+            android:theme="@style/Theme.Nakama.NoActionBarAndStatusBar"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -73,6 +81,7 @@
         </activity>
         <activity
             android:name=".activities.DetailCrewActivity"
+            android:theme="@style/Theme.Nakama.NoActionBarAndStatusBar"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -80,6 +89,7 @@
         </activity>
         <activity
             android:name=".activities.UpdateCrewActivity"
+            android:theme="@style/Theme.Nakama.NoActionBarAndStatusBar"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -87,6 +97,7 @@
         </activity>
         <activity
             android:name=".activities.AddCrewActivity"
+            android:theme="@style/Theme.Nakama.NoActionBarAndStatusBar"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -94,6 +105,7 @@
         </activity>
         <activity
             android:name=".activities.CrewActivity"
+            android:theme="@style/Theme.Nakama.NoActionBarAndStatusBar"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -101,6 +113,7 @@
         </activity>
         <activity
             android:name=".activities.UpdatePiratesActivity"
+            android:theme="@style/Theme.Nakama.NoActionBarAndStatusBar"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -108,6 +121,7 @@
         </activity>
         <activity
             android:name=".activities.DetailPiratesActivity"
+            android:theme="@style/Theme.Nakama.NoActionBarAndStatusBar"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -115,6 +129,7 @@
         </activity>
         <activity
             android:name=".activities.AddPiratesActivity"
+            android:theme="@style/Theme.Nakama.NoActionBarAndStatusBar"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -122,6 +137,7 @@
         </activity>
         <activity
             android:name=".activities.PiratesActivity"
+            android:theme="@style/Theme.Nakama.NoActionBarAndStatusBar"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -129,6 +145,7 @@
         </activity>
         <activity
             android:name=".activities.MainActivity"
+            android:theme="@style/Theme.Nakama.NoActionBarAndStatusBar"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -136,6 +153,7 @@
         </activity>
         <activity
             android:name=".activities.SplashActivity"
+            android:theme="@style/Theme.Nakama.NoActionBarAndStatusBar"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

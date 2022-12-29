@@ -30,6 +30,15 @@ public class DetailPiratesActivity extends AppCompatActivity {
         //binding.tvPiratesPhoto.setText(piratesPhoto);
 
 
+        binding.ivBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(DetailPiratesActivity.this, PiratesActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
         binding.btnCrew.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

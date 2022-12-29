@@ -45,6 +45,15 @@ public class PiratesActivity extends AppCompatActivity {
         binding.rvPirates.setLayoutManager(new LinearLayoutManager(this));
         binding.rvPirates.setAdapter(piratesViewAdapter);
 
+        binding.ivBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(PiratesActivity.this, MainActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
         binding.fabAddPirates.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

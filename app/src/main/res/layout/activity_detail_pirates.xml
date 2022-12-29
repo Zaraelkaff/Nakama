@@ -6,11 +6,31 @@
     android:layout_height="match_parent"
     tools:context=".activities.DetailPiratesActivity">
 
+    <LinearLayout
+        android:id="@+id/ll_actionbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@color/yellow"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageButton
+            android:id="@+id/iv_back"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_margin="10dp"
+            android:src="@drawable/ic_back_black_24"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            app:layout_constraintTop_toBottomOf="@+id/ll_slide"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+    </LinearLayout>
+
 
     <ImageView
         android:id="@+id/tv_pirates_photo"
-        android:layout_width="411dp"
-        android:layout_height="526dp"
+        android:layout_width="410dp"
+        android:layout_height="500dp"
         android:scaleType="fitCenter"
         android:src="@drawable/ic_broken_image_24"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -19,6 +39,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
 
+
     <ImageView
         android:id="@+id/iv_rounded_bg"
         android:layout_width="0dp"
@@ -26,23 +47,22 @@
         android:src="@drawable/rounded_corner_pirates"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_pirates_photo"/>
-
-
+        app:layout_constraintTop_toBottomOf="@+id/tv_pirates_photo" />
 
     <TextView
         android:id="@+id/tv_pirates_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="60dp"
+        android:layout_marginTop="40dp"
         android:fontFamily="sans-serif-black"
         android:text="pirates name"
+        android:textAlignment="center"
         android:textColor="#FF0606"
         android:textSize="40sp"
         android:textStyle="bold"
-        android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_pirates_photo" />
@@ -51,16 +71,15 @@
         android:id="@+id/btn_crew"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="8dp"
         android:background="@android:color/transparent"
         android:text="list crew"
         android:textColor="#5060F5"
-        android:textStyle="bold"
         android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_pirates_name"/>
-
+        app:layout_constraintTop_toBottomOf="@+id/tv_pirates_name" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

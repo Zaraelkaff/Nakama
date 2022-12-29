@@ -43,6 +43,15 @@ public class MovieActivity extends AppCompatActivity {
         binding.rvMovie.setLayoutManager(new LinearLayoutManager(this));
         binding.rvMovie.setAdapter(movieViewAdapter);
 
+        binding.ivBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MovieActivity.this, MainActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
         binding.fabAddMovie.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -51,6 +60,7 @@ public class MovieActivity extends AppCompatActivity {
             }
         });
     }
+
 
     @Override
     protected void onResume() {
@@ -166,6 +176,8 @@ public class MovieActivity extends AppCompatActivity {
             }
         });
     }
+
+
 
     private void showProgressBar(){
         binding.srlMovie.setRefreshing(true);

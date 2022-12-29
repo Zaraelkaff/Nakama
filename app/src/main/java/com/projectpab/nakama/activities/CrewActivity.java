@@ -50,6 +50,15 @@ public class CrewActivity extends AppCompatActivity {
         binding.rvCrew.setLayoutManager(new LinearLayoutManager(this));
         binding.rvCrew.setAdapter(crewViewAdapter);
 
+        binding.ivBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(CrewActivity.this, DetailPiratesActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
         binding.fabAddCrew.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

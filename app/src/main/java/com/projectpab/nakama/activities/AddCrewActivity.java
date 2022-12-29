@@ -2,6 +2,7 @@ package com.projectpab.nakama.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -34,6 +35,15 @@ public class AddCrewActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         pirates = getIntent().getParcelableExtra("EXTRA_DATA");
+
+        binding.ivBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(AddCrewActivity.this, CrewActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
 
         binding.btnAddCrew.setOnClickListener(new View.OnClickListener() {
             @Override

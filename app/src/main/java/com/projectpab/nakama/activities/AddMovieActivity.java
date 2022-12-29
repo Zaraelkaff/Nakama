@@ -2,6 +2,7 @@ package com.projectpab.nakama.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -24,6 +25,15 @@ public class AddMovieActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityAddMovieBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        binding.ivBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(AddMovieActivity.this, MovieActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
 
         binding.btnAddMovie.setOnClickListener(new View.OnClickListener() {
             @Override

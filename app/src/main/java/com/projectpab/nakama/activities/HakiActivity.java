@@ -46,6 +46,15 @@ public class HakiActivity extends AppCompatActivity {
         binding.rvHaki.setLayoutManager(new LinearLayoutManager(this));
         binding.rvHaki.setAdapter(hakiViewAdapter);
 
+        binding.ivBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(HakiActivity.this, MainActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
         binding.fabAddHaki.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
