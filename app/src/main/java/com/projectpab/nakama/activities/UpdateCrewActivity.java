@@ -92,7 +92,7 @@ public class UpdateCrewActivity extends AppCompatActivity {
                 if(uri==null){
                     String crewName = binding.etCrewName.getText().toString();
                     String crewBounty = binding.etCrewBounty.getText().toString();
-                    String crewPhoto = uri.toString();
+                    String crewPhoto = crew.getCrew_photo();
                     int piratesId = crew.getPirates_id();
                     Toast.makeText(UpdateCrewActivity.this, "pirates id =" + piratesId, Toast.LENGTH_SHORT).show();
                     boolean bolehUpdateCrew = true;
