@@ -19,7 +19,7 @@
             android:id="@+id/iv_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_back_white_24"
+            android:src="@drawable/ic_back_black_24"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"/>
 
@@ -80,8 +80,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Add Movie"
-        android:backgroundTint="#FEE979"
-        android:textColor="@color/white"
+        android:backgroundTint="@color/yellow"
+        android:textColor="@color/black"
         android:layout_below="@id/ll_add_movie"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="16dp"/>

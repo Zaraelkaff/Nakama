@@ -19,7 +19,7 @@
             android:id="@+id/iv_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_back_white_24"
+            android:src="@drawable/ic_back_black_24"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -81,7 +81,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Add Crew"
-        android:backgroundTint="#46A1E6"
+        android:backgroundTint="@color/orange"
         android:textColor="@color/white"
         android:layout_below="@id/ll_add_crew"
         android:layout_marginTop="16dp"

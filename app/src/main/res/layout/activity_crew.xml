@@ -51,12 +51,20 @@
         app:layout_constraintTop_toBottomOf="@+id/judul"
         app:layout_constraintVertical_bias="1.0">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_crew"
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:itemCount="10"
-            tools:listitem="@layout/item_crew" />
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_crew"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:itemCount="10"
+                tools:listitem="@layout/item_crew" />
+
+        </ScrollView>
+
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 

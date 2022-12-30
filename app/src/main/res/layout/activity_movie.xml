@@ -35,7 +35,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/ll_actionbar"
         android:text="DAFTAR MOVIE"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:textSize="35sp"
         android:textStyle="bold"
         android:layout_marginTop="20dp"/>
@@ -49,13 +49,21 @@
         app:layout_constraintTop_toBottomOf="@+id/judul"
         app:layout_constraintBottom_toBottomOf="parent">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_movie"
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:padding="10dp"
-            tools:listitem="@layout/item_movie"
-            tools:itemCount="10"/>
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_movie"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="10dp"
+                tools:listitem="@layout/item_movie"
+                tools:itemCount="10"/>
+
+        </ScrollView>
+
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 

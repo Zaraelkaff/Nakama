@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:padding="16dp"
     tools:context=".activities.AddPiratesActivity"
-    android:background="#FFAC5F">
+    android:background="@color/orange">
 
     <LinearLayout
         android:id="@+id/ll_add_pirates"
@@ -19,7 +19,7 @@
             android:id="@+id/iv_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_back_white_24"
+            android:src="@drawable/ic_back_black_24"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"/>
 
@@ -62,8 +62,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Add Pirates"
-        android:backgroundTint="#46A1E6"
-        android:textColor="@color/white"
+        android:backgroundTint="@color/yellow"
+        android:textColor="@color/black"
         android:layout_below="@id/ll_add_pirates"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="16dp"/>

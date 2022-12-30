@@ -6,7 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="center"
-    app:cardCornerRadius="15dp"
+    app:cardCornerRadius="50dp"
+    app:cardElevation="0.7dp"
     app:cardPreventCornerOverlap="true"
     android:layout_marginTop="12dp">
 
@@ -14,7 +15,7 @@
         android:id="@+id/rl_movie"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/red"
+        android:background="#850000"
         android:textAlignment="center">
 
         <TextView
@@ -26,6 +27,7 @@
             android:text="One Piece: The Movie"
             android:ellipsize="end"
             android:gravity="center"
+            android:paddingTop="8dp"
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textStyle="bold" />
@@ -45,7 +47,7 @@
                 app:layout_constraintDimensionRatio="H, 1:0.7"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:tint="#870000" />
+                app:tint="#D18686" />
 
 
             <TextView
