@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    app:cardBackgroundColor="#FEE979"
+    app:cardBackgroundColor="@color/yellow"
     app:cardCornerRadius="50dp"
     app:cardElevation="0.7dp"
     app:cardPreventCornerOverlap="true"
@@ -48,7 +48,7 @@
                 app:layout_constraintDimensionRatio="H, 1:0.7"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:tint="#BAA585" />
+                app:tint="@color/gray" />
 
             <TextView
                 android:id="@+id/tv_pirates_date"
@@ -58,6 +58,7 @@
                 android:textSize="8sp"
                 android:textStyle="bold"
                 android:paddingTop="2dp"
+                android:textColor="@color/gray"
                 app:layout_constraintBottom_toBottomOf="@id/iv_pirates_date"
                 app:layout_constraintStart_toEndOf="@+id/iv_pirates_date"
                 tools:text="2022-11-20 13:59:02" />

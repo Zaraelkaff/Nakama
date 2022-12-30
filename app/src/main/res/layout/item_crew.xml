@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    app:cardBackgroundColor="#FEE979"
+    app:cardBackgroundColor="@color/yellow"
     app:cardCornerRadius="5dp"
     app:cardElevation="0.7dp"
     app:cardPreventCornerOverlap="true"
@@ -42,6 +42,7 @@
                 android:fontFamily="sans-serif"
                 android:textSize="12sp"
                 android:textStyle="bold"
+                android:textColor="@color/gray"
                 app:layout_constraintTop_toTopOf="parent"
                 android:text="Bounty"/>
 
@@ -53,6 +54,7 @@
                 android:fontFamily="sans-serif"
                 android:textSize="12sp"
                 android:textStyle="bold"
+                android:textColor="@color/gray"
                 app:layout_constraintTop_toBottomOf="@+id/judul"
                 android:text="3.000.000.000"/>
 
@@ -73,6 +75,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif"
                 android:textSize="8sp"
+                android:textColor="@color/gray"
                 android:textStyle="bold"
                 app:layout_constraintTop_toBottomOf="@id/tv_crew_bounty"
                 app:layout_constraintBottom_toBottomOf="@id/iv_crew_date"

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#DC4F3C"
+    android:background="@color/red"
     tools:context=".activities.MovieActivity">
 
     <LinearLayout
@@ -75,7 +75,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_margin="16dp"
-        app:backgroundTint="#A50303"
+        app:backgroundTint="@color/red4"
         app:tint="@color/white"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

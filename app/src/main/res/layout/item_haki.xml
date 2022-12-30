@@ -46,7 +46,7 @@
                 app:layout_constraintDimensionRatio="H, 1:0.7"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:tint="#505B93" />
+                app:tint="@color/grayblue" />
 
             <TextView
                 android:id="@+id/tv_haki_date"
@@ -56,6 +56,7 @@
                 android:textSize="8sp"
                 android:textStyle="bold"
                 android:paddingTop="2dp"
+                android:textColor="@color/grayblue"
                 app:layout_constraintBottom_toBottomOf="@id/iv_haki_date"
                 app:layout_constraintStart_toEndOf="@+id/iv_haki_date"
                 tools:text="2022-11-20 13:59:02" />

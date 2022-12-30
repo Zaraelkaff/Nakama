@@ -15,7 +15,7 @@
         android:id="@+id/rl_movie"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#850000"
+        android:background="@color/red3"
         android:textAlignment="center">
 
         <TextView
@@ -47,7 +47,7 @@
                 app:layout_constraintDimensionRatio="H, 1:0.7"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:tint="#D18686" />
+                app:tint="@color/grayred" />
 
 
             <TextView

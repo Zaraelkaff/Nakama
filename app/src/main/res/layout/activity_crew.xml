@@ -76,7 +76,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_margin="16dp"
-        app:backgroundTint="#FFAC5F"
+        app:backgroundTint="@color/orange2"
         app:tint="@color/white"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#DDE7FF"
+    android:background="@color/lightblue"
     tools:context=".activities.MainActivity">
 
 
@@ -44,7 +44,7 @@
         android:id="@+id/pirates"
         android:layout_width="300dp"
         android:layout_height="100dp"
-        android:backgroundTint="#FEE979"
+        android:backgroundTint="@color/yellow"
         android:text="PIRATES"
         android:textColor="@color/black"
         android:textSize="25sp"
@@ -59,7 +59,7 @@
         android:id="@+id/movie"
         android:layout_width="300dp"
         android:layout_height="100dp"
-        android:backgroundTint="#DC4F3C"
+        android:backgroundTint="@color/red"
         android:text="MOVIE"
         android:textColor="@color/black"
         android:textSize="25sp"
@@ -73,7 +73,7 @@
         android:id="@+id/haki"
         android:layout_width="300dp"
         android:layout_height="100dp"
-        android:backgroundTint="#46A1E6"
+        android:backgroundTint="@color/blue2"
         android:text="HAKI"
         android:textColor="@color/black"
         android:textSize="25sp"
