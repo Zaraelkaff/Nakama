@@ -43,9 +43,8 @@ public class DetailPiratesActivity extends AppCompatActivity {
         binding.btnCrew.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(DetailPiratesActivity.this, "id pirates :" + pirates.getPirates_id(), Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(DetailPiratesActivity.this, CrewActivity.class);
-                intent.putExtra("EXTRA_DATA", pirates);
+                intent.putExtra("EXTRA_DATA", pirates.getPirates_id());
                 startActivity(intent);
             }
         });

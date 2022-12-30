@@ -42,6 +42,7 @@ public class CrewActivity extends AppCompatActivity {
     private Pirates pirates;
     private CrewViewAdapter crewViewAdapter;
     private List<Crew> data = new ArrayList<>();
+    private int piratesId;
 
 
     @Override
@@ -50,8 +51,7 @@ public class CrewActivity extends AppCompatActivity {
         binding = ActivityCrewBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        pirates = getIntent().getParcelableExtra("EXTRA_DATA");
-        int piratesId = pirates.getPirates_id();
+        piratesId =  getIntent().getIntExtra("EXTRA_DATA",0);
 
         crewViewAdapter = new CrewViewAdapter();
         binding.rvCrew.setLayoutManager(new LinearLayoutManager(this));
@@ -87,7 +87,7 @@ public class CrewActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        int piratesId = pirates.getPirates_id();
+//        int piratesId = pirates.getPirates_id();
         getCrewByPirates(piratesId);
     }
 

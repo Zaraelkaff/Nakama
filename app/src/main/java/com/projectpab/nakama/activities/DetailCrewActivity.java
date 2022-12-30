@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.projectpab.nakama.databinding.ActivityDetailCrewBinding;
@@ -29,13 +30,13 @@ public class DetailCrewActivity extends AppCompatActivity {
         Glide.with(this)
                 .load(crew.getCrew_photo())
                 .into(binding.ivCrewPhoto);
-
+        int idPirates = crew.getPirates_id();
         binding.ivBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(DetailCrewActivity.this, CrewActivity.class);
+                intent.putExtra("EXTRA_DATA", idPirates);
                 startActivity(intent);
-                finish();
             }
         });
     }
