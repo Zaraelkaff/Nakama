@@ -34,9 +34,10 @@ public class DetailCrewActivity extends AppCompatActivity {
         binding.ivBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(DetailCrewActivity.this, CrewActivity.class);
-                intent.putExtra("EXTRA_DATA", idPirates);
-                startActivity(intent);
+//                Intent intent = new Intent(DetailCrewActivity.this, CrewActivity.class);
+//                intent.putExtra("EXTRA_DATA", idPirates);
+//                startActivity(intent);
+                finish();
             }
         });
     }

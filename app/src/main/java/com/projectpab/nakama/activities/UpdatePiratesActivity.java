@@ -50,8 +50,8 @@ public class UpdatePiratesActivity extends AppCompatActivity {
         binding.ivBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(UpdatePiratesActivity.this, PiratesActivity.class);
-                startActivity(intent);
+//                Intent intent = new Intent(UpdatePiratesActivity.this, PiratesActivity.class);
+//                startActivity(intent);
                 finish();
             }
         });

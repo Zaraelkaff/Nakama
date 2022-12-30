@@ -1,5 +1,6 @@
 package com.projectpab.nakama.activities;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -13,9 +14,16 @@ import android.view.View;
 import android.widget.PopupMenu;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 import com.projectpab.nakama.R;
 import com.projectpab.nakama.adapters.PiratesViewAdapter;
 import com.projectpab.nakama.databinding.ActivityPiratesBinding;
+import com.projectpab.nakama.models.Crew;
 import com.projectpab.nakama.models.Pirates;
 import com.projectpab.nakama.models.ValueData;
 import com.projectpab.nakama.models.ValueNoData;
@@ -33,6 +41,7 @@ public class PiratesActivity extends AppCompatActivity {
     private ActivityPiratesBinding binding;
     private PiratesViewAdapter piratesViewAdapter;
     private List<Pirates> data = new ArrayList<>();
+    private List<Crew> dataCrew = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -139,13 +148,14 @@ public class PiratesActivity extends AppCompatActivity {
                         return true;
                     case R.id.action_delete:
                         int id = pirates.getPirates_id();
+                        String url = pirates.getPirates_photo();
                         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(PiratesActivity.this);
                         alertDialogBuilder.setTitle("Konfirmasi");
                         alertDialogBuilder.setMessage("Yakin ingin menghapus pirates '" + pirates.getPirates_name() + "' ? ");
                         alertDialogBuilder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
-                                deletePirates(id);
+                                deletePirates(id, url);
                             }
                         });
                         alertDialogBuilder.setNegativeButton("No", new DialogInterface.OnClickListener() {
@@ -165,8 +175,56 @@ public class PiratesActivity extends AppCompatActivity {
         popupMenu.show();
     }
 
-    private void deletePirates(int id) {
+    private void deletePirates(int id, String url) {
         APIService api = Utilities.getRetrofit().create(APIService.class);
+        api.getCrewByPirates(Utilities.API_KEY, id).enqueue(new Callback<ValueData<Crew>>() {
+            @Override
+            public void onResponse(Call<ValueData<Crew>> call, Response<ValueData<Crew>> response) {
+                if (response.code() == 200){
+                    int success = response.body().getSuccess();
+                    String message = response.body().getMessage();
+                    if (success ==1){
+                        dataCrew = response.body().getData();
+                        int size = dataCrew.size();
+                        for(int i = 0; i<size; i++){
+                            String urlCrew = dataCrew.get(i).getCrew_photo();
+                            Toast.makeText(PiratesActivity.this, "UrlCrew : "+urlCrew, Toast.LENGTH_SHORT).show();
+                            StorageReference storageReference = FirebaseStorage.getInstance().getReferenceFromUrl(urlCrew);
+                            storageReference.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void unused) {
+                                    Toast.makeText(PiratesActivity.this, "BERHASIL", Toast.LENGTH_SHORT).show();
+                                }
+                            }).addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Toast.makeText(PiratesActivity.this, "GAGAL", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                            String link2 = urlCrew.substring(74,114);
+                            Toast.makeText(PiratesActivity.this, "link: "+link2, Toast.LENGTH_SHORT).show();
+                            DatabaseReference coba2 = FirebaseDatabase.getInstance().getReference(link2);
+                            coba2.removeValue();
+                        }
+                    }else{
+                        Toast.makeText(PiratesActivity.this,
+                                message, Toast.LENGTH_SHORT).show();
+                    }
+                }else {
+                    Toast.makeText(PiratesActivity.this,
+                            "Response code : "+response.code(),
+                            Toast.LENGTH_SHORT).show();
+                }
+                hideProgressBar();
+            }
+
+            @Override
+            public void onFailure(Call<ValueData<Crew>> call, Throwable t) {
+                Toast.makeText(PiratesActivity.this, "halo gagal", Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
         api.deletePirates(Utilities.API_KEY, id).enqueue(new Callback<ValueNoData>() {
             @Override
             public void onResponse(Call<ValueNoData> call, Response<ValueNoData> response) {
@@ -191,6 +249,22 @@ public class PiratesActivity extends AppCompatActivity {
                         "Error : " + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
+        StorageReference storageReference = FirebaseStorage.getInstance().getReferenceFromUrl(url);
+        storageReference.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void unused) {
+                Toast.makeText(PiratesActivity.this, "BERHASIL", Toast.LENGTH_SHORT).show();
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(PiratesActivity.this, "GAGAL", Toast.LENGTH_SHORT).show();
+            }
+        });
+        String link = url.substring(74,117);
+        Toast.makeText(this, "link =" + link, Toast.LENGTH_SHORT).show();
+        DatabaseReference coba = FirebaseDatabase.getInstance().getReference(link);
+        coba.removeValue();
     }
 
 

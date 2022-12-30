@@ -58,6 +58,8 @@ public class MainActivity extends AppCompatActivity {
         binding.pirates.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                audio.pause();
+                binding.sound.setImageResource(R.drawable.ic_volume_off_24);
                 Intent intent = new Intent(MainActivity.this, PiratesActivity.class);
                 startActivity(intent);
                 finish();
@@ -67,6 +69,8 @@ public class MainActivity extends AppCompatActivity {
         binding.movie.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                audio.pause();
+                binding.sound.setImageResource(R.drawable.ic_volume_off_24);
                 Intent intent = new Intent(MainActivity.this, MovieActivity.class);
                 startActivity(intent);
                 finish();
@@ -76,6 +80,8 @@ public class MainActivity extends AppCompatActivity {
         binding.haki.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                audio.pause();
+                binding.sound.setImageResource(R.drawable.ic_volume_off_24);
                 Intent intent = new Intent(MainActivity.this, HakiActivity.class);
                 startActivity(intent);
                 finish();

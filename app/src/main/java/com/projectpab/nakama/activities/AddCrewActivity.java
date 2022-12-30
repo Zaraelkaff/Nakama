@@ -41,6 +41,7 @@ public class AddCrewActivity extends AppCompatActivity {
     Uri uri;
     FirebaseDatabase database;
     FirebaseStorage storage;
+    private int piratesId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +50,8 @@ public class AddCrewActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
         database = FirebaseDatabase.getInstance();
         storage = FirebaseStorage.getInstance();
+
+        piratesId =  getIntent().getIntExtra("EXTRA_DATA",0);
 
         launcher = registerForActivityResult(new ActivityResultContracts.GetContent(), new ActivityResultCallback<Uri>() {
             @Override
@@ -65,13 +68,14 @@ public class AddCrewActivity extends AppCompatActivity {
             }
         });
 
-        pirates = getIntent().getParcelableExtra("EXTRA_DATA");
+
+//        pirates = getIntent().getParcelableExtra("EXTRA_DATA");
 
         binding.ivBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(AddCrewActivity.this, CrewActivity.class);
-                startActivity(intent);
+//                Intent intent = new Intent(AddCrewActivity.this, CrewActivity.class);
+//                startActivity(intent);
                 finish();
             }
         });
@@ -81,6 +85,7 @@ public class AddCrewActivity extends AppCompatActivity {
             public void onClick(View view) {
                 showProgressBar();
                 String key = "crew"+ UUID.randomUUID().toString();
+                int id_pirates = piratesId;
                 StorageReference reference = storage.getReference().child(key);
                 reference.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                     @Override
@@ -94,7 +99,7 @@ public class AddCrewActivity extends AppCompatActivity {
                                         String crewName = binding.etCrewName.getText().toString();
                                         String crewBounty = binding.etCrewBounty.getText().toString();
                                         String crewPhoto = uri.toString();
-                                        int piratesId = pirates.getPirates_id();
+                                        int piratesId = id_pirates;
                                         Toast.makeText(AddCrewActivity.this, "pirates id =" + piratesId, Toast.LENGTH_SHORT).show();
                                         boolean bolehAddCrew = true;
 

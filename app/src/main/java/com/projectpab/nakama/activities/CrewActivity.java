@@ -60,8 +60,8 @@ public class CrewActivity extends AppCompatActivity {
         binding.ivBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(CrewActivity.this, DetailPiratesActivity.class);
-                startActivity(intent);
+//                Intent intent = new Intent(CrewActivity.this, DetailPiratesActivity.class);
+//                startActivity(intent);
                 finish();
             }
         });
@@ -69,9 +69,8 @@ public class CrewActivity extends AppCompatActivity {
         binding.fabAddCrew.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(CrewActivity.this, "id pirates :" + pirates.getPirates_id(), Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(CrewActivity.this, AddCrewActivity.class);
-                intent.putExtra("EXTRA_DATA", pirates);
+                intent.putExtra("EXTRA_DATA", piratesId);
                 startActivity(intent);
             }
         });

@@ -56,8 +56,8 @@ public class AddMovieActivity extends AppCompatActivity {
         binding.ivBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(AddMovieActivity.this, MovieActivity.class);
-                startActivity(intent);
+//                Intent intent = new Intent(AddMovieActivity.this, MovieActivity.class);
+//                startActivity(intent);
                 finish();
             }
         });

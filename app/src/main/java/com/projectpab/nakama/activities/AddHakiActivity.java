@@ -30,8 +30,8 @@ public class AddHakiActivity extends AppCompatActivity {
         binding.ivBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(AddHakiActivity.this, HakiActivity.class);
-                startActivity(intent);
+//                Intent intent = new Intent(AddHakiActivity.this, HakiActivity.class);
+//                startActivity(intent);
                 finish();
             }
         });
