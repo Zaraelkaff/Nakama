@@ -1,5 +1,6 @@
 package com.projectpab.nakama.activities;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -12,6 +13,12 @@ import android.view.View;
 import android.widget.PopupMenu;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 import com.projectpab.nakama.R;
 import com.projectpab.nakama.adapters.MovieViewAdapter;
 import com.projectpab.nakama.databinding.ActivityMovieBinding;
@@ -103,7 +110,7 @@ public class MovieActivity extends AppCompatActivity {
     }
 
     private void onItemMovieClick(Movie movie, int i) {
-        Toast.makeText(this, "HALOOOOO", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Clicked movie", Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(MovieActivity.this, DetailMovieActivity.class);
         intent.putExtra("EXTRA_DATA", movie);
         startActivity(intent);
@@ -123,13 +130,14 @@ public class MovieActivity extends AppCompatActivity {
                         return true;
                     case R.id.action_delete:
                         int id = movie.getMovie_id();
+                        String url = movie.getMovie_photo();
                         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(MovieActivity.this);
                         alertDialogBuilder.setTitle("Konfirmasi");
                         alertDialogBuilder.setMessage("Yakin ingin menghapus pirates '" + movie.getMovie_name() + "' ? ");
                         alertDialogBuilder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
-                                deletePost(id);
+                                deletePost(id,url);
                             }
                         });
                         alertDialogBuilder.setNegativeButton("No", new DialogInterface.OnClickListener() {
@@ -149,7 +157,8 @@ public class MovieActivity extends AppCompatActivity {
         popupMenu.show();
     }
 
-    private void deletePost(int id) {
+    private void deletePost(int id, String url) {
+
         APIService api = Utilities.getRetrofit().create(APIService.class);
         api.deleteMovie(Utilities.API_KEY, id).enqueue(new Callback<ValueNoData>() {
             @Override
@@ -175,9 +184,23 @@ public class MovieActivity extends AppCompatActivity {
                         "Error : " + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
+        StorageReference storageReference = FirebaseStorage.getInstance().getReferenceFromUrl(url);
+        storageReference.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void unused) {
+                Toast.makeText(MovieActivity.this, "BERHASIL", Toast.LENGTH_SHORT).show();
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(MovieActivity.this, "GAGAL", Toast.LENGTH_SHORT).show();
+            }
+        });
+        String link = url.substring(74,115);
+        Toast.makeText(this, "link =" + link, Toast.LENGTH_SHORT).show();
+        DatabaseReference coba = FirebaseDatabase.getInstance().getReference(link);
+        coba.removeValue();
     }
-
-
 
     private void showProgressBar(){
         binding.srlMovie.setRefreshing(true);

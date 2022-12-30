@@ -1,17 +1,38 @@
 package com.projectpab.nakama.activities;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 import com.projectpab.nakama.databinding.ActivityAddMovieBinding;
 import com.projectpab.nakama.models.ValueNoData;
 import com.projectpab.nakama.services.APIService;
 import com.projectpab.nakama.services.Utilities;
+
+import java.util.ArrayDeque;
+import java.util.UUID;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -19,12 +40,18 @@ import retrofit2.Response;
 
 public class AddMovieActivity extends AppCompatActivity {
     private ActivityAddMovieBinding binding;
+    ActivityResultLauncher<String> launcher;
+    Uri uri;
+    FirebaseDatabase database;
+    FirebaseStorage storage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityAddMovieBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        database = FirebaseDatabase.getInstance();
+        storage = FirebaseStorage.getInstance();
 
         binding.ivBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -35,33 +62,63 @@ public class AddMovieActivity extends AppCompatActivity {
             }
         });
 
+        launcher = registerForActivityResult(new ActivityResultContracts.GetContent(), new ActivityResultCallback<Uri>() {
+            @Override
+            public void onActivityResult(Uri uri2) {
+                binding.ivMoviePic.setImageURI(uri2);
+                uri = uri2;
+            }
+        });
+
+        binding.tilMoviePic.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                launcher.launch("image/*");
+            }
+        });
+
         binding.btnAddMovie.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String movieName = binding.etMovieName.getText().toString();
-                String movieYear= binding.etMovieYear.getText().toString();
-                String moviePhoto = binding.etMoviePhoto.getText().toString();
+                showProgressBar();
+                String key = "movie"+UUID.randomUUID().toString();
+                StorageReference reference = storage.getReference().child(key);
+                reference.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                        reference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                            @Override
+                            public void onSuccess(Uri uri) {
+                                database.getReference().child(key).setValue(uri.toString()).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void unused) {
 
-                boolean bolehAddMovie = true;
+                                        String movieName = binding.etMovieName.getText().toString();
+                                        String movieYear= binding.etMovieYear.getText().toString();
+                                        String moviePhoto = uri.toString();
 
-                if (TextUtils.isEmpty(movieName)){
-                    bolehAddMovie = false;
-                    binding.etMovieName.setError("nama movie tidak boleh kosong!");
-                }
+                                        boolean bolehAddMovie = true;
 
-                if (TextUtils.isEmpty(movieYear)){
-                    bolehAddMovie = false;
-                    binding.etMovieYear.setError("tahun movie tidak boleh kosong!");
-                }
+                                        if (TextUtils.isEmpty(movieName)){
+                                            bolehAddMovie = false;
+                                            binding.etMovieName.setError("Nama movie tidak boleh kosong!");
+                                        }
 
-                if (TextUtils.isEmpty(moviePhoto)){
-                    bolehAddMovie = false;
-                    binding.etMoviePhoto.setError("poto movie tidak boleh kosong!");
-                }
+                                        if (TextUtils.isEmpty(movieYear)){
+                                            bolehAddMovie = false;
+                                            binding.etMovieYear.setError("Tahun movie tidak boleh kosong!");
+                                        }
 
-                if (bolehAddMovie){
-                    addMovie(movieName, movieYear, moviePhoto);
-                }
+                                        if (bolehAddMovie){
+                                            addMovie(movieName, movieYear, moviePhoto);
+                                            hideProgressBar();
+                                        }
+                                    }
+                                });
+                            }
+                        });
+                    }
+                });
             }
         });
     }

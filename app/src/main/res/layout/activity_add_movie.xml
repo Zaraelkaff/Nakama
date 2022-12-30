@@ -72,24 +72,6 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/til_movie_photo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:counterEnabled="true"
-            app:counterMaxLength="255">
-
-            <EditText
-                android:id="@+id/et_movie_photo"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Link Movie Photo"
-                android:inputType="none"
-                android:maxLength="255"
-                android:background="@color/white"/>
-
-        </com.google.android.material.textfield.TextInputLayout>
-
 
     </LinearLayout>
 

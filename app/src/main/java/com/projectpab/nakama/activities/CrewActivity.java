@@ -1,5 +1,6 @@
 package com.projectpab.nakama.activities;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -13,6 +14,12 @@ import android.view.View;
 import android.widget.PopupMenu;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 import com.projectpab.nakama.R;
 import com.projectpab.nakama.adapters.CrewViewAdapter;
 import com.projectpab.nakama.databinding.ActivityCrewBinding;
@@ -132,6 +139,7 @@ public class CrewActivity extends AppCompatActivity {
                         return true;
                     case R.id.action_delete:
                         int idCrew = crew.getCrew_id();
+                        String url = crew.getCrew_photo();
                         int idPirates = crew.getPirates_id();
                         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(CrewActivity.this);
                         alertDialogBuilder.setTitle("Konfirmasi");
@@ -139,7 +147,7 @@ public class CrewActivity extends AppCompatActivity {
                         alertDialogBuilder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
-                                deleteCrew(idCrew, idPirates);
+                                deleteCrew(idCrew, idPirates, url);
                             }
                         });
                         alertDialogBuilder.setNegativeButton("No", new DialogInterface.OnClickListener() {
@@ -159,7 +167,7 @@ public class CrewActivity extends AppCompatActivity {
         popupMenu.show();
     }
 
-    private void deleteCrew(int idCrew, int idPirates) {
+    private void deleteCrew(int idCrew, int idPirates, String url) {
         APIService api = Utilities.getRetrofit().create(APIService.class);
         api.deleteCrew(Utilities.API_KEY, idCrew).enqueue(new Callback<ValueNoData>() {
             @Override
@@ -185,6 +193,22 @@ public class CrewActivity extends AppCompatActivity {
                         "Error : " + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
+        StorageReference storageReference = FirebaseStorage.getInstance().getReferenceFromUrl(url);
+        storageReference.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void unused) {
+                Toast.makeText(CrewActivity.this, "Deleted Success", Toast.LENGTH_SHORT).show();
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(CrewActivity.this, "Deleted Failed", Toast.LENGTH_SHORT).show();
+            }
+        });
+        String link = url.substring(74,114);
+        Toast.makeText(this, "link : " + link, Toast.LENGTH_SHORT).show();
+        DatabaseReference coba = FirebaseDatabase.getInstance().getReference(link);
+        coba.removeValue();
     }
 
     private void onItemCrewClick(Crew crew, int i) {

@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.UpdateCrewActivity">
+    tools:context=".activities.UpdateCrewActivity"
+    android:background="#FEE979">
 
     <LinearLayout
         android:id="@+id/ll_update_crew"
@@ -12,6 +13,27 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:padding="16dp">
+
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_back_white_24"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_crew_pic"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/iv_crew_pic"
+                android:layout_width="match_parent"
+                android:layout_height="266dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_baseline_add_box_24"
+                android:layout_marginTop="20dp"/>
+        </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/til_crew_name"
@@ -26,24 +48,9 @@
                 android:layout_height="wrap_content"
                 android:hint="crew Name"
                 android:inputType="none"
-                android:maxLength="50"/>
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/til_crew_photo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:counterEnabled="true"
-            app:counterMaxLength="255">
-
-            <EditText
-                android:id="@+id/et_crew_photo"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Link Crew Photo"
-                android:inputType="none"
-                android:maxLength="255"/>
+                android:maxLength="50"
+                android:layout_marginTop="20dp"
+                android:backgroundTint="@color/white"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -60,7 +67,8 @@
                 android:layout_height="wrap_content"
                 android:hint="Crew Bounty"
                 android:inputType="none"
-                android:maxLength="50"/>
+                android:maxLength="50"
+                android:backgroundTint="@color/white"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -71,11 +79,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Update Crew"
-        android:background="@color/purple_500"
+        android:backgroundTint="#46A1E6"
         android:textColor="@color/white"
         android:layout_below="@id/ll_update_crew"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="16dp"/>
+        android:layout_marginTop="16dp"
+        android:layout_centerHorizontal="true"/>
 
     <ProgressBar
         android:id="@+id/progressBar"

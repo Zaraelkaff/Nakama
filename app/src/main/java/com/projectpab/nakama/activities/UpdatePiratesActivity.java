@@ -1,12 +1,23 @@
 package com.projectpab.nakama.activities;
 
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 import com.projectpab.nakama.databinding.ActivityAddPiratesBinding;
 import com.projectpab.nakama.databinding.ActivityUpdatePiratesBinding;
 import com.projectpab.nakama.models.Pirates;
@@ -20,7 +31,11 @@ import retrofit2.Response;
 
 public class UpdatePiratesActivity extends AppCompatActivity {
     private ActivityUpdatePiratesBinding binding;
+    ActivityResultLauncher<String> launcher;
     private Pirates pirates;
+    Uri uri;
+    FirebaseDatabase database;
+    FirebaseStorage storage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,32 +44,96 @@ public class UpdatePiratesActivity extends AppCompatActivity {
         binding = ActivityUpdatePiratesBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        database = FirebaseDatabase.getInstance();
+        storage = FirebaseStorage.getInstance();
+
+        binding.ivBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(UpdatePiratesActivity.this, PiratesActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        launcher = registerForActivityResult(new ActivityResultContracts.GetContent(), new ActivityResultCallback<Uri>() {
+            @Override
+            public void onActivityResult(Uri uri2) {
+                binding.ivPiratesPic.setImageURI(uri2);
+                uri = uri2;
+            }
+        });
+
         pirates = getIntent().getParcelableExtra("EXTRA_DATA");
         int piratesId = pirates.getPirates_id();
 
         binding.etPiratesName.setText(pirates.getPirates_name());
-        binding.etPiratesPhoto.setText(pirates.getPirates_photo());
+
+        String image = String.valueOf(Uri.parse(pirates.getPirates_photo()));
+        Glide.with(binding.tilPiratesPic)
+                .load(image)
+                .into(binding.ivPiratesPic);
+
+        binding.tilPiratesPic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                launcher.launch("image/*");
+            }
+        });
 
         binding.btnUpdatePirates.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String piratesName = binding.etPiratesName.getText().toString();
-                String piratesPhoto = binding.etPiratesPhoto.getText().toString();
+                showProgressBar();
+                String temp = pirates.getPirates_photo();
+                String key = temp.substring(74,114);
+                Toast.makeText(UpdatePiratesActivity.this, "key = "+key, Toast.LENGTH_SHORT).show();
+                if(uri==null){
+                    String piratesName = binding.etPiratesName.getText().toString();
+                    String piratesPhoto = pirates.getPirates_photo();
 
-                boolean bolehUpdatePirates = true;
+                    boolean bolehUpdatePirates = true;
 
-                if (TextUtils.isEmpty(piratesName)){
-                    bolehUpdatePirates = false;
-                    binding.etPiratesName.setError("nama pirates tidak boleh kosong!");
-                }
+                    if (TextUtils.isEmpty(piratesName)){
+                        bolehUpdatePirates = false;
+                        binding.etPiratesName.setError("nama pirates tidak boleh kosong!");
+                    }
 
-                if (TextUtils.isEmpty(piratesPhoto)){
-                    bolehUpdatePirates = false;
-                    binding.etPiratesPhoto.setError("poto pirates tidak boleh kosong!");
-                }
+                    if (bolehUpdatePirates){
+                        updatePirates(piratesId, piratesName, piratesPhoto);
+                    }
+                    Toast.makeText(UpdatePiratesActivity.this, "Update Pirates Success!", Toast.LENGTH_SHORT).show();
+                } else{
+                    StorageReference reference = storage.getReference().child(key);
+                    reference.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                            reference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                @Override
+                                public void onSuccess(Uri uri) {
+                                    database.getReference().child(key).setValue(uri.toString()).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                        @Override
+                                        public void onSuccess(Void unused) {
+                                            String piratesName = binding.etPiratesName.getText().toString();
+                                            String piratesPhoto = pirates.getPirates_photo();
 
-                if (bolehUpdatePirates){
-                    updatePirates(piratesId, piratesName, piratesPhoto);
+                                            boolean bolehUpdatePirates = true;
+
+                                            if (TextUtils.isEmpty(piratesName)){
+                                                bolehUpdatePirates = false;
+                                                binding.etPiratesName.setError("nama pirates tidak boleh kosong!");
+                                            }
+
+                                            if (bolehUpdatePirates){
+                                                updatePirates(piratesId, piratesName, piratesPhoto);
+                                            }
+                                        }
+                                    });
+                                }
+                            });
+                        }
+                    });
+                    Toast.makeText(UpdatePiratesActivity.this, "haloooo2", Toast.LENGTH_SHORT).show();
                 }
             }
         });

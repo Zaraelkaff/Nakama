@@ -2,6 +2,7 @@ package com.projectpab.nakama.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -30,6 +31,15 @@ public class UpdateHakiActivity extends AppCompatActivity {
 
         haki = getIntent().getParcelableExtra("EXTRA_DATA");
         int hakiId = haki.getHaki_id();
+
+        binding.ivBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(UpdateHakiActivity.this, HakiActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
 
         binding.etHakiName.setText(haki.getHaki_name());
         binding.etHakiDescribe.setText(haki.getHaki_describe());

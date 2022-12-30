@@ -53,8 +53,8 @@
             android:id="@+id/rv_movie"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:padding="10dp"
             tools:listitem="@layout/item_movie"
-            android:paddingStart="100dp"
             tools:itemCount="10"/>
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

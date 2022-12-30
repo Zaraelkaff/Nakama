@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import com.bumptech.glide.Glide;
 import com.projectpab.nakama.databinding.ActivityDetailCrewBinding;
 import com.projectpab.nakama.models.Crew;
 
@@ -25,7 +26,9 @@ public class DetailCrewActivity extends AppCompatActivity {
 
         binding.tvCrewName.setText(crew.getCrew_name());
         binding.tvCrewBounty.setText(crew.getCrew_bounty());
-        //binding.tvCrewPhoto.setText(crew.getCrew_photo());
+        Glide.with(this)
+                .load(crew.getCrew_photo())
+                .into(binding.ivCrewPhoto);
 
         binding.ivBack.setOnClickListener(new View.OnClickListener() {
             @Override

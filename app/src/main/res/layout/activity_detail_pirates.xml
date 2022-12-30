@@ -28,16 +28,16 @@
 
 
     <ImageView
-        android:id="@+id/tv_pirates_photo"
+        android:id="@+id/iv_pirates_photo"
         android:layout_width="410dp"
         android:layout_height="500dp"
         android:scaleType="fitCenter"
-        android:src="@drawable/ic_broken_image_24"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/ll_actionbar"
+        app:layout_constraintVertical_bias="0.0"
+        tools:src="@drawable/ic_broken_image_24" />
 
 
     <ImageView
@@ -49,14 +49,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_pirates_photo" />
+        app:layout_constraintTop_toBottomOf="@+id/iv_pirates_photo" />
 
     <TextView
         android:id="@+id/tv_pirates_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="60dp"
-        android:layout_marginTop="40dp"
+        android:layout_margin="30dp"
+        android:layout_marginTop="10dp"
         android:fontFamily="sans-serif-black"
         android:text="pirates name"
         android:textAlignment="center"
@@ -65,7 +65,7 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_pirates_photo" />
+        app:layout_constraintTop_toBottomOf="@id/iv_pirates_photo" />
 
     <Button
         android:id="@+id/btn_crew"

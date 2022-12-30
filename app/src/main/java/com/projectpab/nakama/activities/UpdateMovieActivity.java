@@ -1,12 +1,23 @@
 package com.projectpab.nakama.activities;
 
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 import com.projectpab.nakama.databinding.ActivityUpdateMovieBinding;
 import com.projectpab.nakama.models.Movie;
 import com.projectpab.nakama.models.ValueNoData;
@@ -19,7 +30,11 @@ import retrofit2.Response;
 
 public class UpdateMovieActivity extends AppCompatActivity {
     private ActivityUpdateMovieBinding binding;
+    ActivityResultLauncher<String> launcher;
     private Movie movie;
+    Uri uri;
+    FirebaseDatabase database;
+    FirebaseStorage storage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,42 +43,112 @@ public class UpdateMovieActivity extends AppCompatActivity {
         binding = ActivityUpdateMovieBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        database = FirebaseDatabase.getInstance();
+        storage = FirebaseStorage.getInstance();
+
+        binding.ivBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(UpdateMovieActivity.this, MovieActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        launcher = registerForActivityResult(new ActivityResultContracts.GetContent(), new ActivityResultCallback<Uri>() {
+            @Override
+            public void onActivityResult(Uri uri2) {
+                binding.ivMoviePic.setImageURI(uri2);
+                uri = uri2;
+            }
+        });
+
         movie = getIntent().getParcelableExtra("EXTRA_DATA");
         int movieId = movie.getMovie_id();
 
         binding.etMovieName.setText(movie.getMovie_name());
         binding.etMovieYear.setText(movie.getMovie_year());
-        binding.etMoviePhoto.setText(movie.getMovie_photo());
+
+        String image = String.valueOf(Uri.parse(movie.getMovie_photo()));
+        Glide.with(binding.tilMoviePic)
+                .load(image)
+                .into(binding.ivMoviePic);
+
+        binding.tilMoviePic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                launcher.launch("image/*");
+            }
+        });
 
         binding.btnUpdateMovie.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String movieName = binding.etMovieName.getText().toString();
-                String movieYear= binding.etMovieYear.getText().toString();
-                String moviePhoto = binding.etMoviePhoto.getText().toString();
+                showProgressBar();
+                String temp = movie.getMovie_photo();
+                String key = temp.substring(74,115);
+                Toast.makeText(UpdateMovieActivity.this, "key = "+key, Toast.LENGTH_SHORT).show();
+                if(uri==null){
+                    String movieName = binding.etMovieName.getText().toString();
+                    String movieYear= binding.etMovieYear.getText().toString();
+                    String moviePhoto = movie.getMovie_photo();
 
-                boolean bolehUpdateMovie = true;
+                    boolean bolehUpdateMovie = true;
 
-                if (TextUtils.isEmpty(movieName)){
-                    bolehUpdateMovie = false;
-                    binding.etMovieName.setError("nama movie tidak boleh kosong!");
-                }
+                    if (TextUtils.isEmpty(movieName)){
+                        bolehUpdateMovie = false;
+                        binding.etMovieName.setError("nama movie tidak boleh kosong!");
+                    }
 
-                if (TextUtils.isEmpty(movieYear)){
-                    bolehUpdateMovie = false;
-                    binding.etMovieYear.setError("tahun movie tidak boleh kosong!");
-                }
+                    if (TextUtils.isEmpty(movieYear)){
+                        bolehUpdateMovie = false;
+                        binding.etMovieYear.setError("tahun movie tidak boleh kosong!");
+                    }
 
-                if (TextUtils.isEmpty(moviePhoto)){
-                    bolehUpdateMovie = false;
-                    binding.etMoviePhoto.setError("poto movie tidak boleh kosong!");
-                }
+                    if (bolehUpdateMovie){
+                        updateMovie(movieId, movieName, movieYear, moviePhoto);
+                    }
+                    Toast.makeText(UpdateMovieActivity.this, "Update Movie", Toast.LENGTH_SHORT).show();
+                } else{
+                    StorageReference reference = storage.getReference().child(key);
+                    reference.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                            reference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                @Override
+                                public void onSuccess(Uri uri) {
+                                    database.getReference().child(key).setValue(uri.toString()).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                        @Override
+                                        public void onSuccess(Void unused) {
+                                            String movieName = binding.etMovieName.getText().toString();
+                                            String movieYear= binding.etMovieYear.getText().toString();
+                                            String moviePhoto = uri.toString();
 
-                if (bolehUpdateMovie){
-                    updateMovie(movieId, movieName, movieYear, moviePhoto);
-                }
+                                            boolean bolehUpdateMovie = true;
+
+                                            if (TextUtils.isEmpty(movieName)){
+                                                bolehUpdateMovie = false;
+                                                binding.etMovieName.setError("nama movie tidak boleh kosong!");
+                                            }
+
+                                            if (TextUtils.isEmpty(movieYear)){
+                                                bolehUpdateMovie = false;
+                                                binding.etMovieYear.setError("tahun movie tidak boleh kosong!");
+                                            }
+
+                                            if (bolehUpdateMovie){
+                                                updateMovie(movieId, movieName, movieYear, moviePhoto);
+                                            }
+                                        }
+                                    });
+                                }
+                            });
+                        }
+                    });
+               }
             }
         });
+
     }
 
     private void updateMovie(int movieId, String movieName, String movieYear, String moviePhoto) {

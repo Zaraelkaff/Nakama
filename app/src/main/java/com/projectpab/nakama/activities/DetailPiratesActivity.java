@@ -24,10 +24,11 @@ public class DetailPiratesActivity extends AppCompatActivity {
 
         pirates = getIntent().getParcelableExtra("EXTRA_DATA");
         String piratesName = pirates.getPirates_name();
-        String piratesPhoto = pirates.getPirates_photo();
 
         binding.tvPiratesName.setText(piratesName);
-        //binding.tvPiratesPhoto.setText(piratesPhoto);
+        Glide.with(this)
+                .load(pirates.getPirates_photo())
+                .into(binding.ivPiratesPhoto);
 
 
         binding.ivBack.setOnClickListener(new View.OnClickListener() {
