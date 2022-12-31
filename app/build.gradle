@@ -49,6 +49,8 @@ dependencies {
     annotationProcessor 'com.github.bumptech.glide:compiler:4.14.2'
     // Image slider
     implementation 'com.github.denzcoskun:ImageSlideshow:0.1.0'
+    // Zoomage
+    implementation 'com.jsibbold:zoomage:1.3.1'
 
     //Firebase
     implementation platform('com.google.firebase:firebase-bom:31.1.0')

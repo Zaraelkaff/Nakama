@@ -10,6 +10,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.projectpab.nakama.databinding.ActivityDetailCrewBinding;
 import com.projectpab.nakama.models.Crew;
+import com.projectpab.nakama.services.Utilities;
 
 public class DetailCrewActivity extends AppCompatActivity {
     private ActivityDetailCrewBinding binding;
@@ -31,6 +32,16 @@ public class DetailCrewActivity extends AppCompatActivity {
                 .load(crew.getCrew_photo())
                 .into(binding.ivCrewPhoto);
         int idPirates = crew.getPirates_id();
+
+        binding.ivCrewPhoto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(DetailCrewActivity.this, ZoomActivity.class);
+                intent.putExtra(Utilities.EXTRA_ZOOM_FOTO, crew.getCrew_photo());
+                startActivity(intent);
+            }
+        });
+
         binding.ivBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

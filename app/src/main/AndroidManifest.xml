@@ -16,6 +16,14 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".activities.ZoomActivity"
+            android:theme="@style/Theme.Nakama.NoActionBarAndStatusBar"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".activities.DetailHakiActivity"
             android:theme="@style/Theme.Nakama.NoActionBarAndStatusBar"
             android:exported="false">

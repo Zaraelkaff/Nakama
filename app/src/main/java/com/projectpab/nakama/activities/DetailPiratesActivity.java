@@ -11,6 +11,7 @@ import com.bumptech.glide.Glide;
 import com.projectpab.nakama.databinding.ActivityDetailPiratesBinding;
 import com.projectpab.nakama.databinding.ActivityPiratesBinding;
 import com.projectpab.nakama.models.Pirates;
+import com.projectpab.nakama.services.Utilities;
 
 public class DetailPiratesActivity extends AppCompatActivity {
     private ActivityDetailPiratesBinding binding;
@@ -30,6 +31,14 @@ public class DetailPiratesActivity extends AppCompatActivity {
                 .load(pirates.getPirates_photo())
                 .into(binding.ivPiratesPhoto);
 
+        binding.ivPiratesPhoto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(DetailPiratesActivity.this, ZoomActivity.class);
+                intent.putExtra(Utilities.EXTRA_ZOOM_FOTO, pirates.getPirates_photo());
+                startActivity(intent);
+            }
+        });
 
         binding.ivBack.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -9,6 +9,7 @@ import android.view.View;
 import com.bumptech.glide.Glide;
 import com.projectpab.nakama.databinding.ActivityDetailMovieBinding;
 import com.projectpab.nakama.models.Movie;
+import com.projectpab.nakama.services.Utilities;
 
 public class DetailMovieActivity extends AppCompatActivity {
     private ActivityDetailMovieBinding binding;
@@ -28,6 +29,15 @@ public class DetailMovieActivity extends AppCompatActivity {
         Glide.with(this)
                 .load(movie.getMovie_photo())
                 .into(binding.ivMoviePic);
+
+        binding.ivMoviePic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(DetailMovieActivity.this, ZoomActivity.class);
+                intent.putExtra(Utilities.EXTRA_ZOOM_FOTO, movie.getMovie_photo());
+                startActivity(intent);
+            }
+        });
 
         binding.ivBack.setOnClickListener(new View.OnClickListener() {
             @Override
