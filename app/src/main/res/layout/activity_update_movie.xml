@@ -60,7 +60,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:counterEnabled="true"
-            app:counterMaxLength="50">
+            app:counterMaxLength="4">
 
             <EditText
                 android:id="@+id/et_movie_year"
@@ -68,7 +68,7 @@
                 android:layout_height="wrap_content"
                 android:hint="Movie Year"
                 android:inputType="none"
-                android:maxLength="50"
+                android:maxLength="4"
                 android:backgroundTint="@color/white"/>
 
         </com.google.android.material.textfield.TextInputLayout>
