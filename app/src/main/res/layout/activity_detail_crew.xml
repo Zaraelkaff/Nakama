@@ -30,10 +30,10 @@
 
     <ImageView
         android:id="@+id/iv_crew_photo"
-        android:layout_width="0dp"
-        android:layout_height="550dp"
+        android:layout_width="400dp"
+        android:layout_height="500dp"
         android:scaleType="fitXY"
-        android:padding="20dp"
+        android:padding="10dp"
         android:src="@drawable/ic_broken_image_24"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -74,7 +74,7 @@
         android:id="@+id/tv_bounty"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="20dp"
         android:textAlignment="center"
         android:fontFamily="sans-serif-black"
         android:text="BOUNTY"
@@ -97,6 +97,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_bounty" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
