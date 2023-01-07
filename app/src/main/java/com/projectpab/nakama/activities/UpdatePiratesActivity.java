@@ -115,7 +115,7 @@ public class UpdatePiratesActivity extends AppCompatActivity {
                                         @Override
                                         public void onSuccess(Void unused) {
                                             String piratesName = binding.etPiratesName.getText().toString();
-                                            String piratesPhoto = pirates.getPirates_photo();
+                                            String piratesPhoto = uri.toString();
 
                                             boolean bolehUpdatePirates = true;
 
@@ -133,7 +133,6 @@ public class UpdatePiratesActivity extends AppCompatActivity {
                             });
                         }
                     });
-                    Toast.makeText(UpdatePiratesActivity.this, "haloooo2", Toast.LENGTH_SHORT).show();
                 }
             }
         });

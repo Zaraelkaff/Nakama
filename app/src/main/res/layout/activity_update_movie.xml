@@ -79,7 +79,7 @@
         android:id="@+id/btn_update_movie"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Update Pirates"
+        android:text="Update Movie"
         android:backgroundTint="@color/yellow"
         android:textColor="@color/black"
         android:layout_below="@id/ll_update_movie"
